@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist | NEPSE HUB</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="stylesheet" href="../css/pages/watchlist.css">
+    <link rel="stylesheet" href="../css/easy.css">
+</head>
+<body>
+    <header class="sticky">
+        <div style="display: flex; flex-direction: row; justify-content: space-between; width: 100%;">
+            <!-- logo -->
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <div id="burgerMenu" class="burger-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="logo-text">NEPSE HUB</span>
+                </div>
+            </div>
+
+            <!-- nepse values -->
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 6px;">
+                <div id="marketDot" class="blinking-dot"></div>
+                <div>
+                    <h6 class="nepse">NEPSE</h6>
+                </div>
+                <div id="index-value">
+                    <div class="flex-col">
+                        <span id="header-nepse-val" style="font-weight: 700; font-size: 1rem; color: var(--text-primary);">—</span>
+                        <span id="header-nepse-change" style="font-size: 0.78rem; font-weight: 600; margin-right: 0.5rem;">—</span>
+                    </div>
+                    <span class="pc-only" style="height: 12px; width: 1px; background: rgba(255, 255, 255, 0.15);"></span>
+                    <div class="flex-col">
+                            <span class="pc-only font-1rem text-secondary">Turnover: <strong id="header-nepse-turnover" class="text-primary">—</strong></span>
+                        <span class="pc-only font-1rem text-secondary">Volume: <strong id="header-nepse-volume" class="text-primary">—</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- clock and notification -->
+            <div style="display: flex; gap: 5px; padding: 0.5rem 0rem; padding-right: 1rem;">
+                <!-- Combined Market Status & Clock Pill -->
+                <div class="market-status-pill pc-only">
+                    <div id="navbar-clock" class="navbar-clock-sub"></div>
+                    <div id="market-status" class="market-status-sub"></div>
+                </div>
+
+                <!-- Notification Bell -->
+                <div class="nav-notification-wrapper">
+                    <button id="notification-bell" class="btn-icon">
+                        <i class="far fa-bell"></i>
+                        <span id="notif-badge" class="notif-badge hidden">0</span>
+                    </button>
+                    <div id="notif-dropdown" class="notif-dropdown glass hidden">
+                        <div class="notif-header">
+                            <h5>Notifications</h5>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <button id="sound-toggle-btn" class="sound-toggle" title="Toggle alert sound">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <button id="mark-read-btn">Mark all as read</button>
+                            </div>
+                        </div>
+                        <div class="notif-filters">
+                            <button class="notif-filter-btn active" data-filter="all">All</button>
+                            <button class="notif-filter-btn" data-filter="buy">Buy Signals</button>
+                            <button class="notif-filter-btn" data-filter="sell">Sell Signals</button>
+                            <button class="notif-filter-btn" data-filter="stoploss">Stop Loss</button>
+                        </div>
+                        <div id="notif-list" class="notif-list">
+                            <div class="notif-empty">No notifications in the last 7 days</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="navbar-container"></div>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <main class="main-content">
+            <div id="app">
+                <div class="fade-in">
+                    <!-- Header -->
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
+                        <div>
+                            <h2 style="margin-bottom:0.2rem;"><i class="fas fa-eye" style="margin-right:0.75rem;"></i>My Watchlist</h2>
+                            <p style="color:var(--text-secondary); font-size:0.85rem;">Track stocks with custom target prices</p>
+                        </div>
+                        <div style="display:flex; gap:0.75rem; align-items:center;">
+                            <span id="wl-live-dot" style="display:flex; align-items:center; gap:0.4rem; font-size:0.78rem; color:var(--text-secondary);">
+                                <span style="width:8px;height:8px;border-radius:50%;background:#10b981;display:inline-block;animation:pulse 2s infinite;"></span> LIVE
+                            </span>
+                            <button class="btn btn-secondary" id="enable-notifications" style="gap: 0.5rem; display: flex; align-items: center;">
+                                <i class="fas fa-bell"></i> Enable Alerts
+                            </button>
+                            <button class="btn btn-primary" id="open-wl-modal">
+                                <i class="fas fa-plus"></i> Add Stock
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Summary bar -->
+                    <div style="display:flex; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+                        <span id="wl-count" style="color:var(--text-secondary); font-size:0.85rem;"></span>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="watchlist-table-wrap">
+                        <div class="wl-count-bar">
+                            <span id="wl-count"></span>
+                            <span style="font-size:0.78rem;">Live prices updated every 30s</span>
+                        </div>
+                        <div style="overflow-x:auto;">
+                            <table class="wl-table" id="watchlistTable">
+                                <thead>
+                                    <tr style="color:var(--text-secondary); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.5px;">
+                                        <th>Symbol</th>
+                                        <th>LTP</th>
+                                        <th>Change</th>
+                                        <th>Target Buy</th>
+                                        <th>Target Sell</th>
+                                        <th>Notes</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="watchlistBody"></tbody>
+                            </table>
+                        </div>
+
+                        <!-- Empty State -->
+                        <div id="wl-empty" class="wl-empty">
+                            <i class="fas fa-eye-slash"></i>
+                            <h3>No stocks watched yet</h3>
+                            <p>Add stocks to monitor their price against your target.</p>
+                            <button class="btn btn-primary" id="empty-add-btn"><i class="fas fa-plus"></i> Add Stock</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ADD / EDIT MODAL -->
+    <div id="wl-modal" class="wl-modal-overlay">
+        <div class="wl-modal-box">
+            <div class="modal-header">
+                <h3 id="wl-modal-title">Add to Watchlist</h3>
+                <button id="close-wl-modal" class="modal-close-btn"><i class="fas fa-times"></i></button>
+            </div>
+
+            <input type="hidden" id="wl-edit-id">
+
+            <div class="form-field">
+                <label class="form-label">Symbol *</label>
+                <div id="wl-symbol-search"></div>
+            </div>
+
+            <div class="form-grid-2">
+                <div class="form-field">
+                    <label class="form-label">Target Buy <span class="wl-buy-hint">(Rs.)</span></label>
+                    <input type="number" id="wl-target-buy" placeholder="Optional" class="form-input">
+                </div>
+                <div class="form-field">
+                    <label class="form-label">Target Sell <span class="wl-sell-hint">(Rs.)</span></label>
+                    <input type="number" id="wl-target-sell" placeholder="Optional" class="form-input">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label class="form-label">Notes <span style="color:var(--text-secondary);">(Optional)</span></label>
+                <textarea id="wl-notes" placeholder="e.g. Waiting for support at 400..." class="form-input" rows="3" style="resize:vertical;"></textarea>
+            </div>
+
+            <div style="display:flex; gap:1rem; margin-top:1.5rem;">
+                <button class="btn btn-secondary" id="cancel-wl-modal" style="flex:1;">Cancel</button>
+                <button class="btn btn-primary" id="save-wl-btn" style="flex:1;">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.3; }
+        }
+    </style>
+
+    <script type="module" src="../js/pages/watchlist.js"></script>
+</body>
+</html>

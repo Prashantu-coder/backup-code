@@ -1,0 +1,395 @@
+/* ═══════════════════════════════════════════
+   PORTFOLIO PAGE — Dedicated Styles
+   Shared utilities live in: css/base.css
+═══════════════════════════════════════════ */
+
+/* ── Stats Grid ── */
+.portfolio-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 1200px) {
+  .portfolio-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .portfolio-stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .portfolio-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--surface-border);
+  border-radius: 20px;
+  padding: 1.3rem;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-card h4 {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summary-card {
+  padding: 1.25rem;
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.summary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.summary-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.summary-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.summary-details {
+  flex: 1;
+}
+
+.summary-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.summary-value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.summary-change {
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
+  font-weight: 600;
+}
+
+/* ── Charts Row ── */
+.portfolio-charts-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 900px) {
+  .portfolio-charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Holdings Table container ── */
+.holdings-table-wrap {
+  background: var(--surface-solid);
+  border: 1px solid var(--surface-border);
+  border-radius: 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.holdings-table-wrap h4 {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--surface-border);
+  font-size: 0.95rem;
+}
+
+/* ── P&L cell special styling ── */
+.pnl-cell .pnl-pct {
+  font-size: 0.7rem;
+  margin-top: 2px;
+  opacity: 0.85;
+}
+
+/* ── Transaction history badge row ── */
+.tx-summary-bar {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--surface-border);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+/* ── Buy Transaction Modal (wide) ── */
+.portfolio-modal-box {
+  max-width: 520px;
+}
+
+/* ── Fee Preview (buy) ── */
+.fee-preview-buy {
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 14px;
+  padding: 1.1rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+.fee-preview-buy .fee-header {
+  color: var(--primary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.fee-preview-buy .fee-total {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--danger);
+}
+.fee-preview-buy .fee-wacc {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* ── Sell Modal (danger theme) ── */
+.fee-preview-sell {
+  background: rgba(244, 63, 94, 0.05);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+  border-radius: 14px;
+  padding: 1.1rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+/* ── Empty portfolio ── */
+.portfolio-empty {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+.portfolio-empty i {
+  font-size: 3rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  display: block;
+}
+.portfolio-empty p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.modal-content-box {
+  padding: 2rem;
+  border-radius: 20px;
+  background: var(--surface-solid);
+}
+
+/* Risk Dashboard Styles */
+.risk-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.risk-card {
+    padding: 1.5rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.risk-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.risk-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.risk-icon {
+    color: var(--primary);
+    opacity: 0.6;
+}
+
+.risk-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+}
+
+.risk-sub-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.concentration-item {
+    margin-bottom: 1rem;
+}
+
+.concentration-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+}
+
+.concentration-bar-bg {
+    height: 8px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.concentration-bar-fill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 4px;
+    transition: width 1s ease-out;
+}
+
+.warning-item {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(244, 63, 94, 0.05);
+    border: 1px solid rgba(244, 63, 94, 0.1);
+    border-radius: 12px;
+    font-size: 0.85rem;
+}
+
+.warning-item.warning-low {
+    background: rgba(245, 158, 11, 0.05);
+    border-color: rgba(245, 158, 11, 0.1);
+}
+
+.warning-item i {
+    margin-top: 0.2rem;
+}
+
+.symbol-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.pnl-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.pnl-positive {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--secondary);
+}
+
+.pnl-negative {
+    background: rgba(244, 63, 94, 0.1);
+    color: var(--danger);
+}
+
+.btn-sell-action {
+    background: rgba(244, 63, 94, 0.08);
+    color: var(--danger);
+    border: 1px solid rgba(244, 63, 94, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-sell-action:hover {
+    background: var(--danger);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* ── Skeleton Loading ── */
+.skeleton {
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+}
+
+.skeleton::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.02) 20%,
+        rgba(255, 255, 255, 0.05) 60%,
+        rgba(255, 255, 255, 0)
+    );
+    animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.skeleton-text {
+    height: 1.2rem;
+    width: 100%;
+}
+
+.skeleton-card {
+    height: 80px;
+}
+
+.skeleton-chart {
+    height: 300px;
+    width: 100%;
+}
